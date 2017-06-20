@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>중간 배너 넣는 방법</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <style>
+        #adsense336x280middle { float:right; margin:10px 0 10px 10px;}
+        .whadsense{width:346px; height:300px;}
+        .whadsensebottom{width:336px; height:280px;}
+        #adsense336x280bottom { margin:0 auto;}
+        @media (min-width: 320px) {
+            .whadsensebottom{width:300px; height:250px;}
+            .whadsense {width: 210px; height: 220px; }
+        }
+        @media (min-width: 470px) {
+            .whadsensebottom{width:336px; height:280px;}
+            .whadsense {width: 260px; height: 270px; }
+        }
+        @media (min-width: 850px) {
+            .whadsensebottom{width:336px; height:280px;}
+            .whadsense {width: 346px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+<h3>중간 배너 넣는 방법</h3>
+
+중간 배너는 오른쪽에 치우쳐서 보이며, 모바일 화면에 꽉차게 보일 경우에 클릭 유도로 인한 제제를 받을수 있으므로 해상도에 따라 아래와 같이 크기를 설정했습니다.<br>
+<br>
+
+<!-- 광고 표시되는 부분 -->
+<div id="adsensemiddle"></div>
+<!-- 광고 표시되는 부분 -->
+
+1. 850px 이상 해상도 : 336px * 280px 배너<br>
+2. 470px~849px 해상도 : 250px * 250px 배너<br>
+3. 320px~469px 해상도 : 200px * 200px 배너<br>
+<br>
+<br>
+출처: http://sometimes-n.tistory.com/15 [종종 올리는 블로그]
+
+
+<div id="adsense336x280middle" class="whadsense" style="display:none">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-xxxxxxxxxxxxxxxxx"
+         data-ad-slot="xxxxxxxxxxxxxxxx"
+         data-ad-format="auto"><img src="../favicon/android-icon-192x192.png"></ins>
+</div>
+<script type="text/javascript">
+    $(function(){
+        if($("#adsensemiddle").length=="1"){
+            $("#adsense336x280middle").css("display","inline-block")
+            $("#adsensemiddle").append($("#adsense336x280middle"));
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }else{
+            $("#adsense336x280middle").remove();
+            $("#adsensemiddle").remove();
+        }
+    });
+</script>
+</body>
+</html>

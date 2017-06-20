@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>하단 배너 넣는 방법</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <style>
+        #adsense336x280middle { float:right; margin:10px 0 10px 10px;}
+        .whadsense{width:346px; height:300px;}
+        .whadsensebottom{width:336px; height:280px;}
+        #adsense336x280bottom { margin:0 auto;}
+        @media (min-width: 320px) {
+            .whadsensebottom{width:300px; height:250px;}
+            .whadsense {width: 210px; height: 220px; }
+        }
+        @media (min-width: 470px) {
+            .whadsensebottom{width:336px; height:280px;}
+            .whadsense {width: 260px; height: 270px; }
+        }
+        @media (min-width: 850px) {
+            .whadsensebottom{width:336px; height:280px;}
+            .whadsense {width: 346px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+<h3>하단 배너 넣는 방법</h3>
+하단 배너는 글 내용에 방해를 받지 않으므로 아래와 같이 크게 보이도록 설정했습니다.<br>
+<br>
+1. 470px 이상 해상도 : 336px * 280px 배너<br>
+2. 320px ~ 469px 해상도 : 300px * 250px 배너<br>
+<br>
+<br>
+관리 -> 플러그인 -> 플러그인 설정으로 들어가셔서 코드 넣는부분에 애드센스 광고단위 [반응형 글하단] 코드를 넣으시면 되는데 아래소스처럼 넣어야 합니다.<br>
+<br>
+[반응형 글상단]처럼 HTML소스에 안넣고 이렇게 플로그인 설정에서 [반응형 글하단] 배너를 넣은이유는, <br>
+HTML 소스에서 글하단 배너를 넣으면 애매한 위치(공유하기 아이콘 위)에 들어가기 때문에 플러그인 설정에서 넣었습니다.<br>
+<br>
+출처: http://sometimes-n.tistory.com/15 [종종 올리는 블로그]<br>
+
+
+<div style="padding:15px 0 15px 0">
+    <div id="adsense336x280bottom" class="whadsensebottom">
+        <!-- 애드센스 [반응형 글하단] 코드를 복사해서 여기부터 -->
+        <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- 반응형 글하단 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxxxx"
+             data-ad-slot="xxxxxxxxxxxxxxx"
+             data-ad-format="auto"><img src="../favicon/android-icon-192x192.png"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <!-- 여기까지 본인 코드를 붙여넣으세요. -->
+    </div>
+</div>
+
+
+
+</body>
+</html>
