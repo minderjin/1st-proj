@@ -30,6 +30,6 @@ app.use(require('./error').init(app));
 
 
 // ##########################   서버 구동       ##########################
-http.createServer(app).listen(25182, function() {   // 8080 => 25182
+http.createServer(app).listen(8080, function() {   // 내부PORT(8080) => 외부PORT(25182)
     console.log('Server running at http://210.114.91.91:25182/');
 });
