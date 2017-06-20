@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2017-06-20.
  */
-var conn_pool;
+var conn_pool = {};
 
 var init = function (pool) {
     console.log('model init 호출');
