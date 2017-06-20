@@ -8,6 +8,15 @@ var serve_static = require('serve-static');   // 웹서버 (html, 이미지, 외
 // ##########################   서버 생성       ##########################
 var app = express();
 
+
+// ##########################   config          ##########################
+var config = require('./config');
+
+// ##########################   뷰엔진 설정     ##########################
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+console.log('뷰 엔진이 ejs로 설정되었습니다.');
+
 // ##########################   MySQL 설정    ##########################
 var pool = require('./mysql').init(app);
 
@@ -30,7 +39,7 @@ app.use(require('./error').init(app));
 
 
 // ##########################   서버 구동       ##########################
-http.createServer(app).listen(8080, function() {   // 내부PORT(8080) => 외부PORT(25182)
+http.createServer(app).listen(config.server_port, function() {   // 내부PORT(8080) => 외부PORT(25182)
     console.log('Server running at http://210.114.91.91:25182/');
-    console.log('         (Dev) at http://127.0.0.1:8080/');
+    console.log('         (Dev) at http://127.0.0.1:'+config.server_port+'/');
 });
