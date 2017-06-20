@@ -3,9 +3,9 @@
  */
 var mysql = require('mysql');
 
-var mysqlModule = {};
+var database = {};
 
-mysqlModule.init = function(app) {
+database.init = function(app) {
     console.log('mysql.init() 호출');
 
     var pool = mysql.createPool({
@@ -21,4 +21,4 @@ mysqlModule.init = function(app) {
     return pool;
 };
 
-module.exports = mysqlModule;
+module.exports = database;
