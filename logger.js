@@ -13,7 +13,7 @@ var logger = new (winston.Logger)({
     transports: [
         new (winstonDaily)({
             name: 'info-file',
-            filename: './log/winston',
+            filename: '/tmp/log/winston',
             datePattern: '_yyyy-MM-dd.log',
             colorize: false,
             maxsize: 50000000,

@@ -10,7 +10,8 @@ var morgan = require('morgan');
 var mg = {};
 
 mg.init = function(app) {
-    var logDirectory = path.join(__dirname, 'log');
+    var logDirectory = path.join('/tmp', 'log');
+    // var logDirectory = path.join(__dirname, 'log');
 
     // 디렉토리 확인 및 생성
     fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
