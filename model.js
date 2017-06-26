@@ -4,7 +4,7 @@
 var conn_pool = {};
 
 var init = function (pool) {
-    console.log('model init 호출');
+    console.log('model.init() 호출됨.');
     conn_pool = pool;
 };
 

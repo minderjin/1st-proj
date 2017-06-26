@@ -7,6 +7,7 @@ var uuid = require('node-uuid');
 var cookie = {};
 
 cookie.init = function(app) {
+    console.log('cookie.init() 호출됨.');
     app.use(cookieParser('myKey#ckjisbest'));
     app.use(function(request, response, next) {
         var xuid = '';

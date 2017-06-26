@@ -10,6 +10,7 @@ var morgan = require('morgan');
 var mg = {};
 
 mg.init = function(app) {
+    console.log('morgan.init() 호출됨.')
     var logDirectory = path.join('/tmp', 'log');
     // var logDirectory = path.join(__dirname, 'log');
 

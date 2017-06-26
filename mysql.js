@@ -6,7 +6,7 @@ var mysql = require('mysql');
 var database = {};
 
 database.init = function(app) {
-    console.log('mysql.init() 호출');
+    console.log('mysql.init() 호출됨.');
 
     var pool = mysql.createPool({
         connectionLimit : 10,

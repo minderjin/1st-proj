@@ -31,7 +31,7 @@ require('./morgan').init(app);
 
 // ##########################   라우터 설정     ##########################
 var router = express.Router();
-require('./router_list').init(app, router, pool);
+require('./router_list').init(app, router, pool, config);
 app.use('/', router);
 
 // ##########################   에러 설정       ##########################

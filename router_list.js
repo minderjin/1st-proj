@@ -10,16 +10,35 @@ var model = require('./model');
 
 var router_list = {};
 
-router_list.init = function(app, router, pool) {
-    console.log('init() 호출됨.');
+router_list.init = function(app, router, pool, config) {
+    console.log('router_list.init() 호출됨.');
     model.init(pool);
 
-    router.route('/log').get(log);          // 로그 수집
-    router.route('/banner').get(banner);    // 배너 노출
-    router.route('/banner_test').get(bannerTest);    // 배너 테스트 노출
-
+    // 라우트 설정
+    setRoute(app, router, config);
 };
 
+/*
+    router setting
+ */
+function setRoute(app, router, config) {
+    var routeLen = config.route_info.length;
+    console.log('[setRouter][start] 설정에 정의된 루트의 수 : %d', routeLen);
+
+    for (var i = 0; i < routeLen; i++) {
+        var curRoute = config.route_info[i];
+        if(curRoute.type === 'get') {
+            router.route(curRoute.path).get(eval(curRoute.method));
+        } else {
+            router.route(curRoute.path).post(eval(curRoute.method));
+        }
+    }
+    console.log('[setRouter][end] 라우팅 정보 세팅됨.');
+}
+
+/*
+    log Controller
+ */
 var log = function(req, res) {
     console.log('log 호출');
 
@@ -34,10 +53,11 @@ var log = function(req, res) {
     res.send(curQry.callback + '({"msg":"ok"})');
 };
 
-
+/*
+    banner Controller
+ */
 var banner = function(req, res) {
     console.log('banner 호출');
-
     var advert_id = (req.body && req.body.advert_id) || req.query.advert_id || '';
 
     model.viewBanner(advert_id, function(err, rows) {
@@ -79,9 +99,11 @@ var banner = function(req, res) {
     });
 };
 
+/*
+    bannerTest Controller
+ */
 var bannerTest = function(req, res) {
     console.log('bannerTest 호출');
-
     var advert_id = (req.body && req.body.advert_id) || req.query.advert_id || '';
 
     model.viewBanner(advert_id, function(err, rows) {
@@ -112,7 +134,6 @@ var bannerTest = function(req, res) {
 
                     return;
                 }
-                // console.log('rendered : ' + html);
                 res.end(html);
             });
 
@@ -123,22 +144,5 @@ var bannerTest = function(req, res) {
         }
     });
 };
-
-
-// function setRoute(app, config) {
-//
-//     var routeLen = config.route_info.length;
-//     console.log('설정에 정의된 루트의 수 : %d', routeLen);
-//
-//     for (var i = 0; i < routeLen; i++) {
-//         var curItem = config.route_info[i];
-//
-//         router.route(curItem.path).post(curItem.method);
-//         console.log('스키마 이름 [%s], 모델 이름 [%s]이 database 객체의 속성으로 추가됨.', curItem.schemaName, curItem.modelName);
-//
-//     }
-//
-//     console.log('라우팅 정보가 세팅됨.');
-// }
 
 module.exports = router_list;
