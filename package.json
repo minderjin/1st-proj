@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nohup node app.js > /dev/null 2>&1 &",
+    "stop": "kill $(fuser -n tcp 8080 | awk '{print $NF}')",
+    "restart": "kill $(fuser -n tcp 8080 | awk '{print $NF}'); nohup node app.js > /dev/null 2>&1 &"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +23,7 @@
     "path": "^0.12.7",
     "querystring": "^0.2.0",
     "rotating-file-stream": "^1.2.2",
+    "serve-favicon": "^2.4.3",
     "url": "^0.11.0",
     "winston": "^2.3.1",
     "winston-daily-rotate-file": "^1.4.6"

@@ -3,6 +3,7 @@ var http = require('http');
 var express = require('express');
 var path = require('path');
 var serve_static = require('serve-static');   // 웹서버 (html, 이미지, 외부노출용 javascript, ...)
+var favicon = require('serve-favicon')
 
 
 // ##########################   서버 생성       ##########################
@@ -22,6 +23,7 @@ var pool = require('./mysql').init(app);
 
 // ##########################   웹 경로 설정    ##########################
 app.use('/public', serve_static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // ##########################   쿠키 설정       ##########################
 require('./cookie').init(app);
