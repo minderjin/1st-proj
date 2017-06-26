@@ -28,13 +28,13 @@
 <!-- 애드센스 [반응형 글상단] 코드를 복사해서 여기부터 -->
 <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
 <!-- 반응형 글상단 -->
-<ins class="adsbygoogle"
+<ins class="adsbyckj"
      style="display:block"
      data-ad-client="ca-pub-xxxxxxxxxxxxxxxxxxxxx"
      data-ad-slot="xxxxxxxxxxxxx"
      data-ad-format="auto"></ins>
 <script>
-//    (adsbygoogle = window.adsbygoogle || []).push({});
+//    (adsbyckj = window.adsbyckj || []).push({});
     // 배너 내용 수정하기
     $.ajax({
         type: 'GET',
@@ -45,11 +45,10 @@
         dataType: 'jsonp',
         jsonp: 'callback',
         success: function(response,opts) {
-            // banner 리푸레쉬
-            $('.adsbygoogle').html(response.banner);
+            $('.adsbyckj').html(response.banner);    // banner 리푸레쉬
         },
         error: function(response,opts) {
-            alert('error: '+response+', '+ opts);   // ERROR!!!!
+            console.log('error: ' + response + ', ' + opts);
         }
     });
 
