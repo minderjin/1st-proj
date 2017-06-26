@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>상단 배너 넣는 방법</title>
+    <title>상단 배너 넣는 방법(동적으로)</title>
     <script src="../jquery-3.2.1.min.js"></script>
     <style>
         #adsense336x280middle { float:right; margin:10px 0 10px 10px;}
@@ -32,9 +32,28 @@
      style="display:block"
      data-ad-client="ca-pub-xxxxxxxxxxxxxxxxxxxxx"
      data-ad-slot="xxxxxxxxxxxxx"
-     data-ad-format="auto"><img src="../images/orange.png"></ins>
+     data-ad-format="auto"></ins>
 <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+//    (adsbygoogle = window.adsbygoogle || []).push({});
+    // 배너 내용 수정하기
+    $.ajax({
+        type: 'GET',
+//        url: 'http://127.0.0.1:8080/banner',
+        url: 'http://210.114.91.91:25182/banner',
+        data: { mid: 'tester1'
+        },
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        success: function(response,opts) {
+            // banner 리푸레쉬
+            $('.adsbygoogle').html(response.banner);
+        },
+        error: function(response,opts) {
+            alert('error: '+response+', '+ opts);   // ERROR!!!!
+        }
+    });
+
+
 </script>
 <!-- 여기까지 본인 코드를 붙여넣으세요. -->
 

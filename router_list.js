@@ -60,6 +60,9 @@ var banner = function(req, res) {
     console.log('banner 호출');
     var advert_id = (req.body && req.body.advert_id) || req.query.advert_id || '';
 
+    var curURL = url.parse(req.url);
+    var curQry = querystring.parse(curURL.query);                   // query 문자열 파싱
+
     model.viewBanner(advert_id, function(err, rows) {
         if(err) {
             console.error('배너 호출 중 오류 발생 : ' + err.stack);
@@ -77,19 +80,25 @@ var banner = function(req, res) {
                     contents_nm:rows[0].contents_nm,
                     image_url:rows[0].image_url};
 
-            req.app.render('banner', context, function(err, html) {
-                if (err) {
-                    console.error('뷰 렌더링 중 오류 발생 : ' + err.stack);
+            // req.app.render('banner', context, function(err, html) {
+            //     if (err) {
+            //         console.error('뷰 렌더링 중 오류 발생 : ' + err.stack);
+            //
+            //         res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
+            //         res.write('<h2>뷰 렌더링 중 오류 발생</h2>');
+            //         res.write('<p>' + err.stack + '</p>');
+            //         res.end();
+            //
+            //         return;
+            //     }
+            //     res.end(html);
+            // });
 
-                    res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
-                    res.write('<h2>뷰 렌더링 중 오류 발생</h2>');
-                    res.write('<p>' + err.stack + '</p>');
-                    res.end();
+            var bannerUrl =
+                "<img style='width:180px;height:180px' src='http://210.114.91.91:25182/public/images/"+context.image_url+"'>";
+            var result = {'banner': bannerUrl};
 
-                    return;
-                }
-                res.end(html);
-            });
+            res.send(curQry.callback + '({"banner":"'+bannerUrl+'"})');
 
         } else {
             res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
