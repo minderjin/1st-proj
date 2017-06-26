@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html>
-<% include ./head.ejs %>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>banner</title>
+</head>
 <body>
-  <h2><%=title%></h2>
-  <div><p>배너 아이디: <%=contents_id%></p></div>
-  <div><p>배너 한글명: <%=contents_nm%></p></div>
-  <div><p>이미지 파일명: <%=image_url%></p></div>
-  <div><p><img style="width:180px;height:180px" src="./public/images/<%=image_url%>"></p></div>
-  <% include ./footer.ejs %>
+  <img style="width:180px;height:180px" src="./public/images/<%=image_url%>">
 </body>
 </html>

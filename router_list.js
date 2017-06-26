@@ -16,6 +16,7 @@ router_list.init = function(app, router, pool) {
 
     router.route('/log').get(log);          // 로그 수집
     router.route('/banner').get(banner);    // 배너 노출
+    router.route('/banner_test').get(bannerTest);    // 배너 테스트 노출
 
 };
 
@@ -33,8 +34,53 @@ var log = function(req, res) {
     res.send(curQry.callback + '({"msg":"ok"})');
 };
 
+
 var banner = function(req, res) {
     console.log('banner 호출');
+
+    var advert_id = (req.body && req.body.advert_id) || req.query.advert_id || '';
+
+    model.viewBanner(advert_id, function(err, rows) {
+        if(err) {
+            console.error('배너 호출 중 오류 발생 : ' + err.stack);
+            res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
+            res.write('<h2>배너 호출 중 오류 발생</h2>');
+            res.write('<p>' + err.stack + '</p>');
+            res.end();
+            return;
+        }
+
+        if(rows) {
+            var context =
+                {title:'배너 페이지',
+                    contents_id: rows[0].contents_id,
+                    contents_nm:rows[0].contents_nm,
+                    image_url:rows[0].image_url};
+
+            req.app.render('banner', context, function(err, html) {
+                if (err) {
+                    console.error('뷰 렌더링 중 오류 발생 : ' + err.stack);
+
+                    res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
+                    res.write('<h2>뷰 렌더링 중 오류 발생</h2>');
+                    res.write('<p>' + err.stack + '</p>');
+                    res.end();
+
+                    return;
+                }
+                res.end(html);
+            });
+
+        } else {
+            res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
+            res.write('<h1>적합한 배너가 없습니다</h1>');
+            res.end();
+        }
+    });
+};
+
+var bannerTest = function(req, res) {
+    console.log('bannerTest 호출');
 
     var advert_id = (req.body && req.body.advert_id) || req.query.advert_id || '';
 
@@ -55,7 +101,7 @@ var banner = function(req, res) {
                     contents_nm:rows[0].contents_nm,
                     image_url:rows[0].image_url};
 
-            req.app.render('banner', context, function(err, html) {
+            req.app.render('banner_test', context, function(err, html) {
                 if (err) {
                     console.error('뷰 렌더링 중 오류 발생 : ' + err.stack);
 
