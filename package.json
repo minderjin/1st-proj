@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nohup node app.js > /dev/null 2>&1 &",
+    "start": "nohup node app.js &",
     "stop": "kill $(fuser -n tcp 8080 | awk '{print $NF}')",
     "restart": "kill $(fuser -n tcp 8080 | awk '{print $NF}'); nohup node app.js > /dev/null 2>&1 &"
   },
