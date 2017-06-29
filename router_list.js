@@ -11,6 +11,7 @@ var model = require('./model');
 var router_list = {};
 
 router_list.init = function(app, router, pool, config) {
+    "use strict";
     console.log('router_list.init() 호출됨.');
     model.init(pool);
 
