@@ -84,6 +84,7 @@ var banner = function(req, res) {
 
             var bannerUrl =
                 "<img style='width:180px;height:180px' src='http://210.114.91.91:25182/public/images/"+context.image_url+"'>";
+            bannerUrl = "<p class='open'>" + bannerUrl + "</p>";
             res.send(curQry.callback + '({"banner":"'+bannerUrl+'"})');
 
         } else {
