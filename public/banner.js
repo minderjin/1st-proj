@@ -7,7 +7,7 @@ $.ajax({
     jsonp: 'callback',
     success: function(response,opts) {
         $('.adsbyckj').html(response.banner);    // banner 리푸레쉬
-        $('#ckj_modal').html('./modal.html');
+        // $('#ckj_modal').html('./modal.html');
     },
     error: function(response,opts) {
         console.log('error: ' + response + ', ' + opts);
