@@ -3,7 +3,7 @@ var http = require('http');
 var express = require('express');
 var path = require('path');
 var serve_static = require('serve-static');   // 웹서버 (html, 이미지, 외부노출용 javascript, ...)
-var favicon = require('serve-favicon')
+var favicon = require('serve-favicon');
 
 
 // ##########################   서버 생성       ##########################
